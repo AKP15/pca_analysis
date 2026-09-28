@@ -1,0 +1,40 @@
+project workflow
+Data → Cleaning → Feature Selection → Standardization → PCA → Explained Variance → Loadings → 2D Visualization → Business Interpretation
+
+Step 1 — Dataset inspection
+Step 2 — What should go into PCA?
+Step 3 — Handle missing values
+Step 4 — Select PCA features
+❌ Customer_ID — identifier, not a numerical behavior
+❌ Any categorical/text columns — PCA needs numerical features
+
+Step 5 — Standardization
+	z = x - mean / std
+	Use StandardScaler to standardize the PCA features.
+
+Step 6 — Apply PCA
+	8 original features → 8 principal components
+	Explained variance ratio for PC1 → PC8
+	The cumulative explained variance
+<<<PC1–PC4 = 91.82% Four components preserve about 92%.>>>
+
+Step 7 — Understand PCA Loadings
+	Create a loading matrix using your PCA components and the original feature names.
+<<<PCA reduced the structure into major dimensions:
+PC1
+Customer Activity / Value
+56.68% of variance
+PC2
+Discount Usage vs Order Value
+12.68%
+PC3
+Transaction Value / Discount Behavior
+12.39% >>>
+
+step 8 — PCA Visualization
+Create a DataFrame containing:Customer_ID PC1 PC2 PC3
+Then create a scatter plot:
+X-axis → PC1
+Y-axis → PC2
+Each point → one customer
+
