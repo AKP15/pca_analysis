@@ -12,6 +12,6 @@ print(df.columns.tolist())
 
 df['Website_Visits']=df['Website_Visits'].fillna(df['Website_Visits'].median())
 df['Discount_Usage_Pct']=df['Discount_Usage_Pct'].fillna(df['Discount_Usage_Pct'].median())
-print(df.isnull().sum())
-
+#print(df.isnull().sum())
+print(df[df['Customer_ID']=='C0130'].stack())
 df.to_csv('data/pca_cleaned.csv',index=False)

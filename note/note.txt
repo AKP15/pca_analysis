@@ -38,3 +38,66 @@ X-axis → PC1
 Y-axis → PC2
 Each point → one customer
 
+Step 9 — Investigate the extreme customer
+		.idxmax()
+
+Step 10 — Check the outlier properly
+Calculate the z-score for C0130(max customer) for all 8 standardized features.
+df_scaled came from StandardScaler, every value in it is already a z-score: (value - mean) / std for that feature. No further calculation is needed.
+
+Step 11 — How many PCA components should we keep?
+Create a Scree Plot:
+X-axis → PC1 to PC8
+Y-axis → Explained Variance %
+Use a line or bar chart
+
+
+PCA components are ranked by how much variance they explain, not by how many features have strong loadings.
+
+PC1 represents overall customer activity and value, because it has strong positive loadings from Total Spending, Total Orders, Website Visits, Purchase Frequency, and Engagement Score.
+
+
+
+Step 14 — K-Means
+8 original features → 3 principal components
+Elbow Method to investigate an appropriate number of clusters.
+
+Step 15 — Choose the number of clusters
+K=2 → large reduction in inertia
+K=3 → still a large reduction
+K=4 → still meaningful
+K=5 → smaller improvement
+K=6–8 → improvements become gradually smaller
+For each K, find:
+Number of customers in each cluster
+Average Total_Spending
+Average Total_Orders
+Average Avg_Order_Value
+Average Website_Visits
+Average Purchase_Frequency
+Average Discount_Usage_Pct
+Average Returns
+Average Engagement_Score
+
+Step 16 — Validate K=4 vs K=5
+Silhouette score ranges from approximately -1 to +1.
+Think of it this way:
+Higher positive value → customers are generally well separated
+Around 0 → clusters overlap
+Negative → some customers may be assigned to the wrong/nearby cluster
+Calculate the silhouette score for:
+K = 2 - 6
+
+Step 17 — Finalize K=5
+Your five groups are:
+Cluster 0 → high AOV, low frequency
+Cluster 1 → active regular customers
+Cluster 2 → moderate customers
+Cluster 3 → discount-oriented, low activity
+Cluster 4 → highly active customers
+
+Conclusion
+PCA reduced 8 customer behavior variables to 3 principal components explaining 81.75% of the variance. K-Means clustering was then applied to identify customer behavior segments. Although K=2 produced the highest silhouette score (0.3991), K=5 provided more detailed and interpretable behavioral profiles for business analysis. The resulting segments included Highly Engaged VIP, Active Loyal, Regular Moderate, High-Value Occasional, and Discount-Driven customers.
+
+	
+
